@@ -1,0 +1,49 @@
+<%= render "home/navbar" %>
+<div class="container d-flex ">
+
+    <div class="container mx-3 my-2 d-flex" style="width: 50rem; heigh: 50rem;">
+
+        <div class="container">
+            <div>
+                <p class="card-text">  <%= @movie.title %></p>
+            </div>
+             <div>
+                 <% @movie.actors.each do |actor|%>
+                    <% if actor.image.attached? %>
+                        <%= image_tag actor.image, style:"width: 80px;height: 80px; display: block",class: "card-img-top mx-2" %>
+                    <% end %>
+                    <p><%= link_to  actor.name , actor_path(actor) %> </p>
+
+                <% end %>
+                <table class="table data-table">
+                    <thead>
+                        <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">picture</th>
+                        <th scope="col">Name</th>
+
+
+                        </tr>
+                    </thead>
+                <tbody>
+
+                    <% @actors.each do |actor|%>
+                        <tr>
+                        <th><%= actor.id %></th>
+                            <% if actor.image.attached? %>
+                            <td>  <%= image_tag actor.image, style:"width: 80px;height: 80px;boamrder-radius:1000px; display: block",class: "card-img-top mx-2" %></td>
+                        <% end %>
+                        <td><%= actor.name %></td>
+                        <td><%= link_to movie_add_path(@movie , actor.id), :class=> "you_class" do %>
+                            <i class="fa fa-envelope-o" aria-hidden="true" target="_blank"></i>
+                        <% end %> </td>
+                        </tr>
+                    <% end %>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

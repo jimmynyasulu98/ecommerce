@@ -1,0 +1,43 @@
+<%= form_with model: @movie do |form| %>
+    <div class="col-sm-3 mb-3">
+        <%= form.label :query, "Duration:",:class => "px-3" %>
+        <%= form.text_field :duration,:class => "form-control form-control-sm " %>
+      </div>
+      <div class="col-sm-3 mb-3">
+        <%= form.label :query, "Price:",:class => "px-3" %>
+        <%= form.number_field :price,:class => "form-control form-control-sm " %>
+      </div>
+      <div class="col-sm-3 mb-3">
+        <%= form.label :query, "status:",:class => "px-3" %>
+        <%= form.select :status, ["UPCOMING", "AVAILABLE"], {:selected=> "UPCOMING"},:class => "form-control form-control-sm " %>
+      </div>
+      <div class="col-sm-3 mb-3">
+         <%= form.label :query, "Producer",:class => "px-3" %>
+
+         <%= form.collection_select :producer_id, Producer.all, :id, :name,:selected => @movie.producer.id ,class: "form-control form-control-sm " %>
+      </div>
+      <div class="col-sm-3 mb-3">
+         <%= form.label :query, "Category:",:class => "px-3" %>
+         <%= form.collection_select :category_id, Category.all,:id,:name,:selected => @movie.category.id,class: "form-control form-control-sm " %>
+      </div>
+      <div class="col-sm-3 mb-3">
+        <%= form.label :query, "Actors:",:class => "px-3" %>
+        <%  MovieActor.select(:actor_id).where(movie_id: @movie).each do |actor|%>
+            <p><%= link_to "Add actor" actor.actor_id %></p>
+        <% end %>
+      </div>
+
+      <div class="col-sm-3 mb-3">
+        <% if @movie.image.attached? %>
+            <%= image_tag @movie.image, style:"width: 200px;height: 180px; display: block",class: "card-img-top mx-2" %>
+        <% end %>
+        <%= form.label :query, "Image:",:class => "px-3" %>
+        <%= form.file_field :image ,:class => "form-control form-control-sm " %>
+
+      </div>
+
+      <div>
+         <%= form.button :submit , :class=>"btn btn-primary py-2"%>
+          <%= link_to "Main menu", root_path() , :class=>"btn btn-primary py-2"%>
+      </div>
+<% end %>

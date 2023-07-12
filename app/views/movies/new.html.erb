@@ -1,0 +1,47 @@
+
+<div class="container"  >
+  <%= form_with model: @movie do |form| %>
+  <div >
+      <div class=" col-sm-3 mb-3 mt-3">
+        <%= form.label :query, "Title:" %>
+        <%= form.text_field :title ,:class => "form-control form-control-sm", :required => true %>
+      </div>
+      <div class="col-sm-3 mb-3">
+        <%= form.label :query, "Duration:",:class => "px-3" %>
+        <%= form.text_field :duration,:class => "form-control form-control-sm " %>
+      </div>
+      <div class="col-sm-3 mb-3">
+        <%= form.label :query, "Price:",:class => "px-3" %>
+        <%= form.number_field :price,:class => "form-control form-control-sm " %>
+      </div>
+      <div class="col-sm-3 mb-3">
+        <%= form.label :query, "status:",:class => "px-3" %>
+        <%= form.select :status, ["UPCOMING", "AVAILABLE"], {:selected=> "UPCOMING"},:class => "form-control form-control-sm " %>
+      </div>
+      <div class="col-sm-3 mb-3">
+         <%= form.label :query, "Producer:",:class => "px-3" %>
+
+         <%= form.collection_select :producer_id, Producer.all, :id, :name,class: "form-control form-control-sm " %>
+      </div>
+      <div class="col-sm-3 mb-3">
+         <%= form.label :query, "Category:",:class => "px-3" %>
+         <%= form.collection_select :category_id, Category.all,:id, :name ,class: "form-control form-control-sm " %>
+      </div>
+      <div class="col-sm-3 mb-3">
+         <%= form.label :query, "Actor:",:class => "px-3" %>
+
+        <%= form.collection_select :actor_id, Actor.all,:id, :name,{}, multiple: true  ,class: "form-control form-control-sm " %>
+      </div>
+
+      <div class="col-sm-3 mb-3">
+        <%= form.label :query, "Image:",:class => "px-3" %>
+        <%= form.file_field :image ,:class => "form-control form-control-sm " %>
+      </div>
+      <div>
+         <%= form.button :submit , :class=>"btn btn-primary py-2"%>
+          <%= link_to "Main menu", root_path() , :class=>"btn btn-primary py-2"%>
+      </div>
+
+    </div>
+  <% end %>
+</div>

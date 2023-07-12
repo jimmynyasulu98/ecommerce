@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ecommerce</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+
+  </head>
+
+  <body>
+
+    <% flash.each do |type, msg| %>
+      <% if type == 'notice' %>
+        <div class="alert alert-info">
+          <%= msg %>
+        </div>
+      <% else %>
+      <div class="alert alert-warning">
+          <%= msg %>
+      </div>
+      <% end %>
+    <% end %>
+
+    <%= yield %>
+
+  </body>
+</html>

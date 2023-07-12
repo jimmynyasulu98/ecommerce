@@ -1,0 +1,20 @@
+<%= render "home/navbar" %>
+<div class="container d-flex ">
+    <div>
+            <h5 class="card-title" ><%= @movie.title  %></h5>
+        <p class="card-text"> <%= @movie.duration %></p>
+        <%= link_to "Edit details", edit_movie_path(@movie), class: "btn btn-primary" %>
+        <%= link_to "Add  to cart", root_path(), class: "btn btn-primary" %>
+    </div>
+        <div>
+            <% @movie.actors.each do |actor|%>
+
+            <% if actor.image.attached? %>
+                <%= image_tag actor.image, style:"width: 80px;height: 80px; display: block",class: "card-img-top mx-2" %>
+            <% end %>
+            <p><%= link_to  actor.name , actor_path(actor) %> </p>
+
+        <% end %>
+            <p><%= link_to  "add Actor" , movie_movie_actors(actor) , class: "btn btn-primary" %> </p>
+    </div>
+</div>
