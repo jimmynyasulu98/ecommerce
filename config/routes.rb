@@ -14,6 +14,6 @@ Rails.application.routes.draw do
 
 
   resources :order_item ,only: [:update, :update, :destroy]
-      get 'order_item/:id', to: 'order_item#add' ,as: "add_order"
+      get 'order_item/:id', to: 'order_items#add' ,as: "add_order"
 
 end
