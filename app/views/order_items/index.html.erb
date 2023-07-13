@@ -1,0 +1,59 @@
+<%= render "home/navbar" %>
+<div class="container d-flex ">
+
+    <div class="container mx-3 my-2 d-flex" style="width: 50rem; heigh: 50rem;">
+
+        <div class="container">
+            <div>
+                <p class="card-text">Your Shopping cart</p>
+            </div>
+             <div>
+                <table class="table data-table">
+                    <thead>
+                        <tr>
+                        <th scope="col">Item no.</th>
+                        <th scope="col">Movie</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Subtotal</th>
+                        <th scope="col">Action</th>
+
+
+                        </tr>
+                    </thead>
+                <tbody>
+
+                    <% @items.each_with_index  do |item , index|%>
+                        <tr>
+                            <td><%= index + 1 %></td>
+                            <td><%= item.movie.title %></td>
+                            <td><%= item.quantity %></td>
+                            <td><%= item.price %></td>
+                            <td><%= item.subtotal %></td>
+                            <td class="d-flex">
+                                <%= form_tag  update_order_path() do %>
+                                    <%= hidden_field_tag :item_id, item.id %>
+                                    <%= hidden_field_tag :task, "add" %>
+                                    <%= button_tag( ) do %>
+
+                                         <i class="bi bi-cart-plus mx-2 text-success"></i>
+                                    <% end %>
+                                <% end %>|
+                                <%= form_tag  update_order_path() do %>
+                                    <%= hidden_field_tag :item_id, item.id %>
+                                    <%= hidden_field_tag :task, "subtract" %>
+                                    <%= button_tag( class: "" ) do %>
+                                        <i class="bi bi-cart-dash text-danger"></i>
+                                    <% end %>
+                                <% end %>
+                            </td>
+                        </tr>
+                    <% end %>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

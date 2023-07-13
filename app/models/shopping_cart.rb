@@ -24,9 +24,30 @@ class ShoppingCart
     )
 
     order_item.price = movie.price
-    order_item.subtotal =  movie.price
-    order_item.quantity = 1
+    order_item.subtotal +=  movie.price
+    order_item.quantity += 1
     order_item.save
+  end
+
+  def update_item(order_item: , task:)
+
+    order_item = OrderItem.find(order_item)
+    order = Order.find(order_item.order_id)
+
+    if task == "add"
+      order_item.subtotal +=  order_item.movie.price
+      order_item.quantity += 1
+      order.total  +=  order_item.movie.price
+    elsif task == "subtract"
+      order_item.subtotal -=  order_item.movie.price
+      order_item.quantity -= 1
+      order.total  -=  order_item.movie.price
+    else
+      return
+    end
+    order_item.save
+    order.save
+
   end
 
   def remove_item(id:)

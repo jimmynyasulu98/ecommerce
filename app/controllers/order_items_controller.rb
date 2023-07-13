@@ -1,7 +1,8 @@
 class OrderItemsController < ApplicationController
   before_action :authenticate_user!
+
   def index
-    @items = current_cart.order.items
+    @items = current_cart.order(user_id: current_user.id).order_items
   end
 
   def add
@@ -12,6 +13,15 @@ class OrderItemsController < ApplicationController
 
     redirect_to cart_path
   end
+
+  def update
+      current_cart.update_item(
+        order_item: params[:item_id] , task: params[:task]
+      )
+
+      redirect_to cart_path
+  end
+
 
   def destroy
     current_cart.remove_item(id: params[:id])
