@@ -45,6 +45,12 @@
                                     <%= button_tag( class: "" ) do %>
                                         <i class="bi bi-cart-dash text-danger"></i>
                                     <% end %>
+                                <% end %> |
+                                 <%= form_tag  order_item_path(item.id), method: :delete do %>
+                                    <%= hidden_field_tag :item_id, item.id %>
+                                    <%= button_tag( ) do %>
+                                        <i class="bi bi-trash mx-2 text-danger"></i>
+                                    <% end %>
                                 <% end %>
                             </td>
                         </tr>
@@ -52,6 +58,13 @@
 
                     </tbody>
                 </table>
+                <%= link_to "Add item" , root_path %>
+                 <%= form_tag  submit_order_path() do %>
+                        <%= button_tag( ) do %>
+                            submit order
+                        <% end %>
+                <% end %>
+
             </div>
         </div>
     </div>

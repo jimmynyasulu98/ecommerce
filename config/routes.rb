@@ -14,8 +14,10 @@ Rails.application.routes.draw do
 
   get '/cart', to: 'order_items#index'
   post 'order_item', to: 'order_items#update' ,as: "update_order"
-  resources :order_item ,only: [:update, :update, :destroy]
+  delete 'order_item', to: 'order_items#destroy' ,as: "delete_item"
+  resources :order_items ,only: [:update, :update, :destroy]
       get 'order_item/:id', to: 'order_items#add' ,as: "add_order"
+      post 'submit_oder', to: 'order_items#submit_order' ,as: "submit_order"
 
 
 end

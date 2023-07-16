@@ -78,11 +78,6 @@ GEM
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 2.11.6, < 3)
       sassc-rails (>= 2.0.0)
-    bootstrap-icons (1.0.13)
-      nokogiri (~> 1)
-    bootstrap-icons-helper (2.0.1)
-      bootstrap-icons (~> 1)
-      rails (>= 6)
     builder (3.2.4)
     capybara (3.39.2)
       addressable
@@ -159,6 +154,8 @@ GEM
     public_suffix (5.0.1)
     puma (5.6.6)
       nio4r (~> 2.0)
+    pundit (2.3.0)
+      activesupport (>= 3.0.0)
     racc (1.7.1)
     rack (2.2.7)
     rack-test (2.1.0)
@@ -255,7 +252,6 @@ DEPENDENCIES
   activestorage
   bootsnap
   bootstrap (~> 5.2, >= 5.2.3)
-  bootstrap-icons-helper
   capybara
   debug
   devise (~> 4.9)
@@ -265,6 +261,7 @@ DEPENDENCIES
   jquery-rails
   mysql2 (~> 0.5)
   puma (~> 5.0)
+  pundit (~> 2.3)
   rails (~> 7.0.4, >= 7.0.4.3)
   sassc-rails
   selenium-webdriver
