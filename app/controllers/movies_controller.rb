@@ -4,10 +4,12 @@ class MoviesController < ApplicationController
 
   def new
     @movie = Movie.new
+    authorize @movie
   end
 
   def create
     @movie = Movie.create(movie_params)
+    authorize @movie
     if @movie.valid?
       params[:movie][:actor_id].each do |actor_id|
         if actor_id != ""
@@ -32,6 +34,7 @@ class MoviesController < ApplicationController
 
   def update
     @movie = @movie.update(movie_params)
+    authorize @movie
     if @movie
       params[:movie][:actor_id].each do |actor_id|
         if actor_id != ""
@@ -58,6 +61,4 @@ class MoviesController < ApplicationController
   def find_movie # works without
     @movie = Movie.find(params[:id])
   end
-
-
 end
